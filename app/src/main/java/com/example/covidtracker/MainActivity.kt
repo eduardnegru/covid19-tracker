@@ -24,29 +24,29 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     fun initFragments() {
-        globalFragment = HomeFragment()
-        countriesFragment = StatsFragment()
+        globalFragment = GlobalFragment()
+        countriesFragment = CountriesFragment()
         fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction().add(R.id.frame, globalFragment, "HomeFragment").commit()
-        fragmentManager.beginTransaction().add(R.id.frame, countriesFragment, "StatsFragment").hide(countriesFragment).commit()
+        fragmentManager.beginTransaction().add(R.id.frame, globalFragment, "GlobalFragment").commit()
+        fragmentManager.beginTransaction().add(R.id.frame, countriesFragment, "CountriesFragment").hide(countriesFragment).commit()
     }
 
-    fun loadHomeFragment() {
+    fun loadGlobalFragment() {
         fragmentManager.beginTransaction().hide(countriesFragment).show(globalFragment).commit()
     }
 
-    fun loadStatsFragment() {
+    fun loadCountriesFragment() {
         fragmentManager.beginTransaction().hide(globalFragment).show(countriesFragment).commit()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_home -> {
-                loadHomeFragment()
+            R.id.nav_global -> {
+                loadGlobalFragment()
                 return true
             }
-            R.id.nav_stats -> {
-                loadStatsFragment()
+            R.id.nav_countries -> {
+                loadCountriesFragment()
                 return true
             }
         }

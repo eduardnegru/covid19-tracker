@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/nav_home" android:title="Global"  android:icon="@drawable/ic_nav_global"/>
-    <item android:id="@+id/nav_stats" android:title="Country" android:icon="@drawable/ic_nav_country" />
+    <item android:id="@+id/nav_global" android:title="Global"  android:icon="@drawable/ic_nav_global"/>
+    <item android:id="@+id/nav_countries" android:title="Country" android:icon="@drawable/ic_nav_country" />
 </menu>
