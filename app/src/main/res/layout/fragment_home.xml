@@ -1,15 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pullToRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:text="Home" />
+        android:orientation="vertical"
+        android:stretchColumns="2">
 
-</FrameLayout>
+
+        <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent" android:layout_weight="1" android:background="#f3f3f3">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/shape_rounded_rectangle"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/text_new_cases"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:gravity="center">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:text="New cases"
+                    android:textAlignment="center"
+                    android:textColor="#F44336"
+                    android:textSize="15dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/shape_rounded_rectangle"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:id="@+id/text_total_confirmed"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:gravity="center">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:text="Total confirmed"
+                    android:textAlignment="center"
+                    android:textColor="#F44336"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent" android:layout_weight="1" android:background="#f3f3f3">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/shape_rounded_rectangle"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/text_new_deaths"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:gravity="center">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:text="New deaths"
+                    android:textAlignment="center"
+                    android:textColor="#F44336"
+                    android:textSize="15dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/shape_rounded_rectangle"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/text_total_deaths"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:gravity="center">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:text="Total deaths"
+                    android:textAlignment="center"
+                    android:textColor="#F44336"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent" android:layout_weight="1" android:background="#f3f3f3">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/shape_rounded_rectangle"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/text_new_recovered"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:gravity="center">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:text="New recovered"
+                    android:textAlignment="center"
+                    android:textColor="#4CAF50"
+                    android:textSize="15dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/shape_rounded_rectangle"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/text_total_recovered"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:gravity="center">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:text="Total recovered"
+                    android:textAlignment="center"
+                    android:textColor="#4CAF50"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

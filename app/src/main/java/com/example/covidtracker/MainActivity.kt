@@ -9,8 +9,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     lateinit var navigationView: BottomNavigationView
-    lateinit var homeFragment: Fragment
-    lateinit var statsFragment:Fragment
+    lateinit var globalFragment: Fragment
+    lateinit var countriesFragment:Fragment
     lateinit var fragmentManager:FragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,19 +24,19 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     fun initFragments() {
-        homeFragment = HomeFragment()
-        statsFragment = StatsFragment()
+        globalFragment = HomeFragment()
+        countriesFragment = StatsFragment()
         fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction().add(R.id.frame, homeFragment, "HomeFragment").commit()
-        fragmentManager.beginTransaction().add(R.id.frame, statsFragment, "StatsFragment").hide(statsFragment).commit()
+        fragmentManager.beginTransaction().add(R.id.frame, globalFragment, "HomeFragment").commit()
+        fragmentManager.beginTransaction().add(R.id.frame, countriesFragment, "StatsFragment").hide(countriesFragment).commit()
     }
 
     fun loadHomeFragment() {
-        fragmentManager.beginTransaction().hide(statsFragment).show(homeFragment).commit()
+        fragmentManager.beginTransaction().hide(countriesFragment).show(globalFragment).commit()
     }
 
     fun loadStatsFragment() {
-        fragmentManager.beginTransaction().hide(homeFragment).show(statsFragment).commit()
+        fragmentManager.beginTransaction().hide(globalFragment).show(countriesFragment).commit()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
