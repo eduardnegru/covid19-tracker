@@ -177,7 +177,7 @@ class NotificationFragment : Fragment() {
                 val storageNotificationId = sharedPreferences?.getInt(SHARED_PREFERENCES_ID, -1)
 
                 if (storageNotificationId != -1) {
-                    Log.d("MALARKY",  "Alarm already exists")
+                    Log.d("COVID_TAG",  "Alarm already exists")
                     Toast.makeText(context, "Alarm already exists. Please clear it before setting new one.", Toast.LENGTH_LONG).show()
                     return@run
                 }
@@ -193,12 +193,12 @@ class NotificationFragment : Fragment() {
                     minute = timePicker?.getCurrentMinute() ?: 0
                 }
 
-                Log.d("MALARKY",  "$hour $minute")
+                Log.d("COVID_TAG",  "$hour $minute")
                 val position: Int = countriesDropdown?.selectedItemPosition as Int
                 val country: Country = countries[position]
                 val notificationIntent = Intent(context, NotificationManager::class.java)
 
-                Log.d("MALARKY",  "Country $position ${country.code}")
+                Log.d("COVID_TAG",  "Country $position ${country.code}")
 
                 notificationIntent.putExtra("country_code", country.code)
                 notificationIntent.putExtra("country_name", country.name)
