@@ -28,13 +28,13 @@ class CountriesFragment : Fragment() {
     lateinit var sortButton : ImageButton
     lateinit var countryRv : RecyclerView
 
-    lateinit var countries : ArrayList<Country>
-    lateinit var dropdownAdapter: DropdownAdapter2
+    private var countries : ArrayList<Country> = ArrayList()
+    private var dropdownAdapter: DropdownAdapter? = null
 
     val COUNTRY_URL : String = "https://api.covid19api.com/summary"
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -56,7 +56,7 @@ class CountriesFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                dropdownAdapter.getFilter().filter(s)
+                dropdownAdapter?.getFilter()?.filter(s)
             }
 
             override fun afterTextChanged(s: Editable) {
@@ -71,10 +71,10 @@ class CountriesFragment : Fragment() {
             override fun onMenuItemClick(item: MenuItem): Boolean {
                 if (item.itemId == 0) {
                     Collections.sort(countries, SortCountryUp())
-                    dropdownAdapter.notifyDataSetChanged()
+                    dropdownAdapter?.notifyDataSetChanged()
                 } else if (item.itemId == 1) {
                     Collections.sort(countries, SortCountryDown())
-                    dropdownAdapter.notifyDataSetChanged()
+                    dropdownAdapter?.notifyDataSetChanged()
                 }
                 return false
             }
@@ -91,7 +91,7 @@ class CountriesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        loadData()
+//        loadData()
     }
 
     private fun loadData() {
@@ -106,7 +106,8 @@ class CountriesFragment : Fragment() {
     }
 
     private fun handleError(error: VolleyError) {
-        Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+        Log.d("ERROR", error.message.toString())
+//        Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
     }
 
     private fun handleResponse(response: String) {
@@ -138,7 +139,7 @@ class CountriesFragment : Fragment() {
         }
 
 
-        dropdownAdapter = DropdownAdapter2(context!!, countries, countries)
+        dropdownAdapter = DropdownAdapter(context, countries, countries)
 
         val llm = LinearLayoutManager(context)
         llm.orientation = LinearLayoutManager.VERTICAL

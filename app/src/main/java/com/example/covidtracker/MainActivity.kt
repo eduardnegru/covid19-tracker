@@ -1,8 +1,10 @@
 package com.example.covidtracker
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.blongho.country_data.World
@@ -13,7 +15,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     lateinit var globalFragment: Fragment
     lateinit var countriesFragment:Fragment
     lateinit var notificationFragment:Fragment
-    lateinit var activeFragment:Fragment
     lateinit var fragmentManager:FragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         World.init(applicationContext)
         initFragments()
-
+        Log.d("DEBUG", "INITIALIZING")
         navigationView.setOnNavigationItemSelectedListener(this)
     }
 
@@ -31,26 +32,23 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         globalFragment = GlobalFragment()
         countriesFragment = CountriesFragment()
         notificationFragment = NotificationFragment()
-        activeFragment = globalFragment
+
+        Log.d("DEBUG", "Setting default as global but the active is now ")
+
         fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction().add(R.id.frame, globalFragment, "GlobalFragment").commit()
-        fragmentManager.beginTransaction().add(R.id.frame, countriesFragment, "CountriesFragment").hide(countriesFragment).commit()
-        fragmentManager.beginTransaction().add(R.id.frame, notificationFragment, "NotificationFragment").hide(notificationFragment).commit()
+        fragmentManager.beginTransaction().replace(R.id.frame, globalFragment, "GlobalFragment").commit()
     }
 
     fun loadGlobalFragment() {
-        fragmentManager.beginTransaction().hide(activeFragment).show(globalFragment).commit()
-        activeFragment = globalFragment
+        fragmentManager.beginTransaction().replace(R.id.frame, globalFragment).commit()
     }
 
     fun loadCountriesFragment() {
-        fragmentManager.beginTransaction().hide(activeFragment).show(countriesFragment).commit()
-        activeFragment = countriesFragment
+        fragmentManager.beginTransaction().replace(R.id.frame, countriesFragment).commit()
     }
 
     fun loadNotificationFragment() {
-        fragmentManager.beginTransaction().hide(activeFragment).show(notificationFragment).commit()
-        activeFragment = notificationFragment
+        fragmentManager.beginTransaction().replace(R.id.frame, notificationFragment).commit()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -70,5 +68,17 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
 
         return false
+    }
+
+    override fun onSaveInstanceState(bundle: Bundle) {
+        super.onSaveInstanceState(bundle)
+        Log.d("DEBUG", "Id = ${navigationView.selectedItemId}");
+        bundle.putInt("SelectedItemId", navigationView.selectedItemId);
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val selectedItemId = savedInstanceState.getInt("SelectedItemId")
+        navigationView.selectedItemId = selectedItemId
     }
 }

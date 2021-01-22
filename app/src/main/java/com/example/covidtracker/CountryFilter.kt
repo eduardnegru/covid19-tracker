@@ -4,7 +4,7 @@ import android.widget.Filter
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CountryFilter(var adapter: DropdownAdapter2, var countryList: ArrayList<Country>) : Filter() {
+class CountryFilter(var adapter: DropdownAdapter, var countryList: ArrayList<Country>) : Filter() {
 
     override fun performFiltering(constraint: CharSequence?): FilterResults {
         var results : FilterResults = FilterResults()

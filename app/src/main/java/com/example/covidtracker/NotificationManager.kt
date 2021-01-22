@@ -130,7 +130,7 @@ class NotificationManager : BroadcastReceiver() {
             var stringRequest = StringRequest(Request.Method.GET, URL_STATS_GLOBAL, Response.Listener{ response ->
                 handleResponse(response, countryName, context)
             }, Response.ErrorListener { error ->
-                Toast.makeText(context, "Setting up notification failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Cannot perform request. Please check your internet connectio", Toast.LENGTH_SHORT).show()
             })
 
             var requestQueue = Volley.newRequestQueue(context)

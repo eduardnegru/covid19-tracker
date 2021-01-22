@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlin.collections.ArrayList
 
 
-class DropdownAdapter2(var context: Context, var countries: ArrayList<Country>, var filterList: ArrayList<Country>) :
-    RecyclerView.Adapter<DropdownAdapter2.HolderCountry>(), Filterable {
+class DropdownAdapter(var context: Context?, var countries: ArrayList<Country>, var filterList: ArrayList<Country>) :
+    RecyclerView.Adapter<DropdownAdapter.HolderCountry>(), Filterable {
 
     var filter : CountryFilter? = null
 

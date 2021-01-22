@@ -1,5 +1,6 @@
 package com.example.covidtracker
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -50,16 +51,16 @@ class GlobalFragment : Fragment() {
 
         pullToRefresh = view.findViewById(R.id.pullToRefresh)
         pullToRefresh.setOnRefreshListener {
-            loadData(false)
+            loadData(container?.context, false)
             pullToRefresh.isRefreshing = false
         }
 
-        loadData(true)
+        loadData(container?.context, true)
 
         return view
     }
 
-    private fun loadData(addSpinner: Boolean = true) {
+    private fun loadData(context: Context?, addSpinner: Boolean = true) {
 
         if (addSpinner)
             spinner?.start()
@@ -70,7 +71,7 @@ class GlobalFragment : Fragment() {
         }, {error ->
             if (addSpinner)
                 spinner?.stop()
-            Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Cannot perform request. Please check your internet connection", Toast.LENGTH_LONG).show()
         })
 
         val requestQueue = Volley.newRequestQueue(context)

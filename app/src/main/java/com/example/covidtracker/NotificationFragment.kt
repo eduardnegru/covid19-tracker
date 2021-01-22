@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.app.job.JobScheduler
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
@@ -27,7 +28,6 @@ import kotlin.collections.ArrayList
 class NotificationFragment : Fragment() {
 
     val SHARED_PREFERENCES: String = "SHARED_PREFERENCES"
-    val KEY_COUNTRY: String = "KEY_COUNTRY"
     val SHARED_PREFERENCES_ID: String = "covid_notification_id"
 
     private var countriesDropdown: Spinner? = null
@@ -76,7 +76,7 @@ class NotificationFragment : Fragment() {
         cancelNotificationButton?.isEnabled = alarmAlreadyRuns;
         createNotificationButton?.isEnabled = !alarmAlreadyRuns
 
-        populateCountriesDropdown(position)
+        populateCountriesDropdown(container?.context, position)
 
         return view
     }
@@ -104,13 +104,14 @@ class NotificationFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun populateCountriesDropdown(initialPosition: Int?) {
+    private fun populateCountriesDropdown(context: Context?, initialPosition: Int?) {
         val URL_STATS_GLOBAL = "https://api.covid19api.com/countries"
 
         val stringRequest = StringRequest(Request.Method.GET, URL_STATS_GLOBAL, { response ->
             handleResponse(response, initialPosition)
         }, { error ->
-            Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+            Log.d("ERROR", error.message.toString())
+            Toast.makeText(context, "Cannot perform request. Please check your internet connection", Toast.LENGTH_LONG).show()
         })
 
         val requestQueue = Volley.newRequestQueue(context)

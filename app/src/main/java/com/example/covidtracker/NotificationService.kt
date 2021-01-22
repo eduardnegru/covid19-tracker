@@ -46,7 +46,6 @@ class NotificationService : JobService() {
     }
 
     override fun onStartJob(params: JobParameters?): Boolean {
-        val country: String? = params?.extras?.getString("country")
 
         createNotificationChannel()
 
