@@ -48,18 +48,6 @@ class NotificationService : JobService() {
     override fun onStartJob(params: JobParameters?): Boolean {
         val country: String? = params?.extras?.getString("country")
 
-//        val URL_STATS_GLOBAL = "https://api.covid19api.com/summary"
-//        var stringRequest = StringRequest(Request.Method.GET, URL_STATS_GLOBAL, Response.Listener{ response ->
-//            handleResponse(response, addSpinner)
-//        }, Response.ErrorListener { error ->
-//            if (addSpinner)
-//                spinner?.stop()
-//            Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
-//        })
-//
-//        var requestQueue = Volley.newRequestQueue(context)
-//        requestQueue.add(stringRequest)
-
         createNotificationChannel()
 
         val contentPendingIntent = PendingIntent.getActivity(this, 0, Intent(this, MainActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT)

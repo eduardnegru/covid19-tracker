@@ -11,11 +11,11 @@ import com.blongho.country_data.World
 import java.util.*
 
 
-class DropdownAdapter(var context: Context, var countries: List<Country>) : BaseAdapter() {
+class SpinnerAdapter(var context: Context, var countries: List<Country>) : BaseAdapter() {
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view = LayoutInflater.from(context).inflate(R.layout.country_row, null)
+        val view = LayoutInflater.from(context).inflate(R.layout.flag, null)
 
         val flagView: ImageView = view.findViewById(R.id.flag)
         val nameView: TextView = view.findViewById(R.id.country)

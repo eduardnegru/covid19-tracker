@@ -16,35 +16,19 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.random.Random
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [NotificationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class NotificationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
 
     val SHARED_PREFERENCES: String = "SHARED_PREFERENCES"
     val KEY_COUNTRY: String = "KEY_COUNTRY"
     val SHARED_PREFERENCES_ID: String = "covid_notification_id"
-
-    private var param1: String? = null
-    private var param2: String? = null
 
     private var countriesDropdown: Spinner? = null
     private var createNotificationButton: Button? = null
@@ -55,11 +39,6 @@ class NotificationFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-
         scheduler = context?.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
     }
 
@@ -128,13 +107,13 @@ class NotificationFragment : Fragment() {
     private fun populateCountriesDropdown(initialPosition: Int?) {
         val URL_STATS_GLOBAL = "https://api.covid19api.com/countries"
 
-        var stringRequest = StringRequest(Request.Method.GET, URL_STATS_GLOBAL, Response.Listener{ response ->
+        val stringRequest = StringRequest(Request.Method.GET, URL_STATS_GLOBAL, { response ->
             handleResponse(response, initialPosition)
-        }, Response.ErrorListener { error ->
+        }, { error ->
             Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
         })
 
-        var requestQueue = Volley.newRequestQueue(context)
+        val requestQueue = Volley.newRequestQueue(context)
         requestQueue.add(stringRequest)
     }
 
@@ -147,7 +126,7 @@ class NotificationFragment : Fragment() {
         var defaultCountryIndex = 0
 
         for (i in 0 until countriesArray.length()) {
-            var countryObject: JSONObject = countriesArray.getJSONObject(i)
+            val countryObject: JSONObject = countriesArray.getJSONObject(i)
             val countryName = countryObject.getString("Country")
             val countryCode = countryObject.getString("ISO2")
             countries.add(i, Country(countryName, countryCode))
@@ -161,7 +140,7 @@ class NotificationFragment : Fragment() {
                 break
             }
 
-        val adapter = context?.let { DropdownAdapter(it, ArrayList(countries)) }
+        val adapter = context?.let { SpinnerAdapter(it, ArrayList(countries)) }
         countriesDropdown?.adapter = adapter
 
         if (initialPosition != null && initialPosition >= 0)
@@ -214,9 +193,10 @@ class NotificationFragment : Fragment() {
                 calendar.set(Calendar.SECOND, 0)
 
 
-                alarmManager?.set(
+                alarmManager?.setRepeating(
                         AlarmManager.RTC_WAKEUP,
                         calendar.timeInMillis,
+                        AlarmManager.INTERVAL_DAY,
                         pendingIntent
                 )
 
@@ -238,25 +218,5 @@ class NotificationFragment : Fragment() {
                 cancelAlarm()
             }
         }
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment NotificationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            NotificationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

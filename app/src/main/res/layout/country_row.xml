@@ -1,23 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="2dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:contentPadding="5dp">
 
-    <ImageView
-        android:id="@+id/flag"
-        android:paddingBottom="0dp"
-        android:scaleType="centerInside"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:src="@drawable/se" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/country"
-        android:gravity="center"
-        android:layout_weight="3"
-        android:text="Sweeden"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+        <TextView
+            android:id="@+id/countryTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contry Name"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/countryTv">
+
+            <TableRow android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cases"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/casesTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"/>
+            </TableRow>
+
+
+            <TableRow android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today Cases"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/todayCasesTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"/>
+            </TableRow>
+
+            <TableRow android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today Deaths"
+                    android:textColor="@color/purple_700"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/todayDeathsTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="@color/purple_700"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"/>
+            </TableRow>
+
+            <TableRow android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Deaths"
+                    android:textColor="@color/purple_700"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/totalDeathsTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="@color/purple_700"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"/>
+            </TableRow>
+
+            <TableRow android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today Recovered"
+                    android:textColor="@color/teal_700"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/todayRecoveredTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="@color/teal_700"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"/>
+            </TableRow>
+
+            <TableRow android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recovered"
+                    android:textColor="@color/teal_700"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/totalRecoveredTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="@color/purple_700"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"/>
+            </TableRow>
+        </TableLayout>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

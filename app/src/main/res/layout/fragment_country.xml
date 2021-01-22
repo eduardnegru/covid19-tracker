@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/silver"
+    tools:context=".CountriesFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:id="@+id/searchLayout">
+
+        <EditText
+            android:id="@+id/searchTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_toStartOf="@id/sortButton"
+            android:hint="Search"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/purple_700"
+            tools:ignore="HardcodedText"
+            android:layout_toLeftOf="@id/sortButton" />
+
+        <ImageButton
+            android:id="@+id/sortButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_notification"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/countryRv"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        tools:listitem="@layout/country_row"/>
+
+</LinearLayout>
