@@ -31,10 +31,10 @@ class NotificationService : JobService() {
 
         // Define notification manager object.
         mNotifyManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        Log.d("MALARKY", "Running service")
+        Log.d("COVID_TAG", "Running service")
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Log.d("MALARKY", "Building notification")
+            Log.d("COVID_TAG", "Building notification")
             // Create the NotificationChannel with all the parameters.
             val notificationChannel = NotificationChannel(PRIMARY_CHANNEL_ID, "Job Service notification", NotificationManager.IMPORTANCE_HIGH)
             notificationChannel.enableLights(true)

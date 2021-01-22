@@ -37,10 +37,10 @@ class NotificationManager : BroadcastReceiver() {
 
         // Define notification manager object.
         mNotifyManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        Log.d("MALARKY", "Running service")
+        Log.d("COVID_TAG", "Running service")
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Log.d("MALARKY", "Building notification")
+            Log.d("COVID_TAG", "Building notification")
             // Create the NotificationChannel with all the parameters.
             val notificationChannel = NotificationChannel(PRIMARY_CHANNEL_ID, "Job Service notification", NotificationManager.IMPORTANCE_HIGH)
             notificationChannel.enableLights(true)
@@ -119,13 +119,13 @@ class NotificationManager : BroadcastReceiver() {
             val day = padLeft(calendar.get(Calendar.DAY_OF_MONTH))
             val month = padLeft(calendar.get(Calendar.MONTH) + 1)
 
-            Log.d("MALARKY", "Data c=$countryCode h=$hour m=$minute")
+            Log.d("COVID_TAG", "Data c=$countryCode h=$hour m=$minute")
 
             createNotificationChannel(context)
 
             val URL_STATS_GLOBAL = "https://api.covid19api.com/live/country/$countryCode/status/confirmed/date/${year}-${month}-${day}T00:00:00Z"
 
-            Log.d("MALARKY", "Request URL = $URL_STATS_GLOBAL")
+            Log.d("COVID_TAG", "Request URL = $URL_STATS_GLOBAL")
 
             var stringRequest = StringRequest(Request.Method.GET, URL_STATS_GLOBAL, Response.Listener{ response ->
                 handleResponse(response, countryName, context)
